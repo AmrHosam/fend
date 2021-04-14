@@ -16,7 +16,7 @@ function handleSubmit(event) {
     fetch('http://localhost:8080/test')
     .then(res => res.json())
     .then(function(res) {
-        const response = fetch("https://api.meaningcloud.com/sentiment-2.1?key="+res.message+"&url=https://www.bbc.com/news/technology-56659212&lang=en", requestOptions)
+        const response = fetch("https://api.meaningcloud.com/sentiment-2.1?key="+res.message+"&url="+formText+"&lang=en", requestOptions)
         .then(response => ({
           status: response.status, 
           body: response.json()
@@ -27,7 +27,14 @@ function handleSubmit(event) {
         })
         .then(res=>{
           console.log(res)
-          
+          console.log(res.agreement)
+          console.log(res.irony)
+          document.getElementById('model').innerText = res.model
+          document.getElementById('score').innerText = res.score_tag
+          document.getElementById('agreement').innerText = res.agreement
+          document.getElementById('subjectivity').innerText = res.subjectivity
+          document.getElementById('confidence').innerText = res.confidence
+          document.getElementById('irony').innerText = res.irony
         })
         .catch(error => console.log('error', error));
     })
