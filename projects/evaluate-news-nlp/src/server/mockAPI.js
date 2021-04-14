@@ -1,7 +1,8 @@
+const dotenv = require('dotenv').config()
+
+const apiKey = process.env.API_KEY
 let json = {
-    'title': 'test json response',
-    'message': 'this is a message',
-    'time': 'now'
+    'message': process.env.API_KEY,
 }
 
 module.exports = json
