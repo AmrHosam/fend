@@ -7,11 +7,11 @@ import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
 
-console.log(checkForName);
+import img from './images/index.png';
 
-alert("I EXIST")
 console.log("CHANGE!!");
 
+document.getElementById("logo").setAttribute("src",img)
 
 export {
     checkForName,
