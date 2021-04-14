@@ -34,19 +34,47 @@
             <section>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="https://example.com" name="input" value="" onblur="onBlur()">
+                        <input type="text" class="form-control" id="name" placeholder="https://example.com" name="input" value="" onblur="onBlur()">
                         <label for="floatingInput">Article URL</label>
-                      </div>
-                      <input type="submit" class="btn btn-outline-success" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                    </div>
+                    <input type="submit" class="btn btn-outline-success" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             </section>
 
             <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
+                <strong>Results:</strong>
+                <div id="results">
+                    <table class="table rounded table-bordered border-success table-hover table-striped">
+                        <tbody>
+                            <tr>
+                              <th scope="row">Model</th>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Score Tag</th>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Agreement</th>
+                              <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Subjectivity</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Confidence</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Irony</th>
+                                <td></td>
+                            </tr>
+                          </tbody>
+                    </table>
+                </div>
             </section>
         </main>
-        <div class="footer-padding"></div>
         <footer>
             <p><small>&copy; Copyright 2021, Amr Hossam</small></p>
         </footer>
