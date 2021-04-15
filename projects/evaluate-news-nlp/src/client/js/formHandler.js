@@ -4,40 +4,34 @@ function handleSubmit(event) {
     // check what text was put into the form field
     let formText = document.getElementById('name').value
 
+    const requestOptions = {
+      method: 'POST',
+      redirect: 'follow',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({url: formText})
+      };
+
     if(Client.urlValidation(formText))
     {
-      const requestOptions = {
-        method: 'POST',
-        redirect: 'follow'
-      };  
-      fetch('http://localhost:8080/test')
+      console.log("::: Form Submitted :::")
+      fetch('http://localhost:8080/test', requestOptions)
       .then(res => res.json())
-      .then(function(res) {
-          const response = fetch("https://api.meaningcloud.com/sentiment-2.1?key="+res.message+"&url="+formText+"&lang=en", requestOptions)
-          .then(response => ({
-            status: response.status, 
-            body: response.json()
-          }))
-          .then(({ status, body }) => {
-                console.log(status)
-                return body
-          })
-          .then(res=>{
-            document.getElementById('model').innerText = res.model
-            document.getElementById('score').innerText = res.score_tag
-            document.getElementById('agreement').innerText = res.agreement
-            document.getElementById('subjectivity').innerText = res.subjectivity
-            document.getElementById('confidence').innerText = res.confidence
-            document.getElementById('irony').innerText = res.irony
-          })
-          .catch(error => console.log('error', error));
+      .then(data => {
+        console.log(data)
+        document.getElementById('model').innerText = data.model
+        document.getElementById('score').innerText = data.score_tag
+        document.getElementById('agreement').innerText = data.agreement
+        document.getElementById('subjectivity').innerText = data.subjectivity
+        document.getElementById('confidence').innerText = data.confidence
+        document.getElementById('irony').innerText = data.irony
       })
     } else {
       alert("Invalid URL. Please try again.")
       document.getElementById('name').value = ""
     }
 
-    console.log("::: Form Submitted :::")
 
 
 }

@@ -1,11 +1,11 @@
 var path = require('path')
 const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
+const dotenv = require('dotenv').config()
+const fetch = require("node-fetch");
 const app = express()
-// const dotenv = require('dotenv').config()
 
-// const apiKey = process.env.API_KEY
-
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
 
 app.use(express.static('dist'))
 
@@ -21,6 +21,23 @@ app.listen(8080, function () {
     console.log('Example app listening on port 8080!')
 })
 
-app.get('/test', function (req, res) {
-    res.json(mockAPIResponse);
+app.post('/test', function (req, res) {
+
+    const url = req.body.url
+
+    fetch("https://api.meaningcloud.com/sentiment-2.1?key="+process.env.API_KEY+"&url="+url+"&lang=en", {
+        method: 'POST',
+        redirect: 'follow'
+        })
+    .then(response => ({
+      status: response.status, 
+      body: response.json()
+    }))
+    .then(({ status, body }) => {
+        console.log(status)
+        return body
+    })
+    .then(data=>res.json(data))
+    .catch(error => console.log('error', error));
+
 })
