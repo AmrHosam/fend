@@ -1,5 +1,5 @@
-import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
+import { urlValidation }from './js/urlChecker'
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -9,12 +9,12 @@ import './styles/header.scss'
 
 import img from './images/index.png';
 
-console.log("CHANGE!!");
+alert("I exist")
 
 document.getElementById("logo").setAttribute("src",img)
 
 export {
-    checkForName,
-    handleSubmit
+    handleSubmit,
+    urlValidation
    }
    
