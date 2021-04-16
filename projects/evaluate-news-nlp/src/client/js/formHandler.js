@@ -20,7 +20,6 @@ function handleSubmit(event) {
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        document.getElementById('model').innerText = data.model
         document.getElementById('score').innerText = Client.getPolarity(data.score_tag)
         document.getElementById('agreement').innerText = data.agreement
         document.getElementById('subjectivity').innerText = data.subjectivity
