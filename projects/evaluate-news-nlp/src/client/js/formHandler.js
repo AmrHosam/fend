@@ -19,6 +19,7 @@ function handleSubmit(event) {
       fetch('http://localhost:8080/test', requestOptions)
       .then(res => res.json())
       .then(data => {
+        document.getElementById("result").style.visibility = "visible";
         console.log(data)
         document.getElementById('score').innerText = Client.getPolarity(data.score_tag)
         document.getElementById('agreement').innerText = data.agreement
