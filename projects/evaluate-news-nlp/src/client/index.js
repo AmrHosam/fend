@@ -1,5 +1,6 @@
 import { handleSubmit } from './js/formHandler'
 import { urlValidation }from './js/urlChecker'
+import { getPolarity }from './js/polarityChecker'
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -15,6 +16,7 @@ document.getElementById("logo").setAttribute("src",img)
 
 export {
     handleSubmit,
-    urlValidation
+    urlValidation,
+    getPolarity
    }
    
