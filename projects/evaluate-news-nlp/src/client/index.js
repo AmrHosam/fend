@@ -10,8 +10,6 @@ import './styles/header.scss'
 
 import img from './images/index.png';
 
-alert("I exist")
-
 document.getElementById("logo").setAttribute("src",img)
 
 export {
