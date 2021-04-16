@@ -30,6 +30,43 @@ module.exports = {
         
         ]
     },
+    devServer: {
+        
+        inline: true,
+
+        port: 8080,
+
+        publicPath: '/',
+
+        setup(app){
+
+            const express = require('express')
+            const dotenv = require('dotenv').config()
+            const fetch = require("node-fetch");
+
+            app.use(express.json());
+            
+            app.post("/test", function(req, res){
+                const url = req.body.url
+
+                fetch("https://api.meaningcloud.com/sentiment-2.1?key="+process.env.API_KEY+"&url="+url+"&lang=en", {
+                    method: 'POST',
+                    redirect: 'follow'
+                    })
+                .then(response => ({
+                  status: response.status, 
+                  body: response.json()
+                }))
+                .then(({ status, body }) => {
+                    console.log(status)
+                    return body
+                })
+                .then(data=>res.json(data))
+                .catch(error => console.log('error', error));
+            })
+
+        }
+    },
     plugins: [
         new HtmlWebPackPlugin({
             template: "./src/client/views/index.html",
